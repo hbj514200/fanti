@@ -18,7 +18,7 @@ public class welcomeActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(1700);
                     startActivity(new Intent(welcomeActivity.this, MainActivity.class));
                     finish();
                 } catch (Exception e){
