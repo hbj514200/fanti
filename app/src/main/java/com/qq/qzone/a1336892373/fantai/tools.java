@@ -10,7 +10,7 @@ public class tools {
             JChineseConvertor jChineseConvertor = JChineseConvertor.getInstance();
             st = jChineseConvertor.s2t(st);
         } catch (IOException e) {
-            st = "该死，程序内部出现了错误，我们会在将来修复这个BUG。";
+            st = "该死，程序内部出现了错误，转换失败，我们会在将来修复这个BUG。";
         }
         return st;
     }
@@ -20,7 +20,7 @@ public class tools {
             JChineseConvertor jChineseConvertor = JChineseConvertor.getInstance();
             st = jChineseConvertor.t2s(st);
         } catch (IOException e) {
-            st = "该死，程序内部出现了错误，我们会在将来修复这个BUG。";
+            st = "该死，程序内部出现了错误，转换失败，我们会在将来修复这个BUG。";
         }
         return st;
     }

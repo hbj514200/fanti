@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import net.youmi.android.normal.spot.SpotManager;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -17,6 +19,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private EditText editText;
     private ImageView yuanbutton;
     private int yuanflag = 1;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
         jButton.setOnClickListener(this);
         fButton.setOnClickListener(this);
         yuanbutton.setOnClickListener(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try { Thread.sleep(45000); } catch (Exception e) { }
+                SpotManager.getInstance(MainActivity.this).setSpotOrientation(SpotManager.ORIENTATION_PORTRAIT);
+                SpotManager.getInstance(MainActivity.this).setAnimationType(SpotManager.ANIM_SIMPLE);
+                SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this);
+            }
+        }).start();
+
     }
 
     @Override
@@ -47,12 +62,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     yuanbutton.setImageResource(R.drawable.yuanbutton2);
                     ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     editText.setText(cm.getText());
+                    cm.setText("");
                 }
                 else{
                     yuanbutton.setImageResource(R.drawable.yuanbutton);
-                    Toast.makeText(MainActivity.this, "已经复制到剪切板", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.yijin), Toast.LENGTH_SHORT).show();
                     ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(editText.getText().toString());
+                    editText.setText("");
                 }
                 yuanflag++;
                 break;

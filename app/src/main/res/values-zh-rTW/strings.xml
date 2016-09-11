@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">簡繁轉換</string>
+    <string name="yijin">已經復制到剪切板</string>
+    <string name="gaisi">該死，程序內部出現了錯誤，我們會在將來修復這個BUG。</string>
+    <string name="zhuanjian">轉簡體</string>
+    <string name="zhuanfan">轉繁體</string>
+    <string name="guanyu">您可以把壹段文字復制到這個地方，然後進行類型轉換，下面那個圓形的按鈕可以進行復制粘黏操作，如果您有什麽建議，可以給我發郵件反饋：hbj514200@qq.com 感謝您的使用。</string>
+</resources>

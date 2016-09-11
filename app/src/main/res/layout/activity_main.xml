@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <EditText
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/edittext"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -19,7 +18,7 @@
         android:paddingTop="25dp"
         android:paddingBottom="35dp"
         android:paddingRight="27dp"
-        android:text="Hello World!" />
+        android:text="@string/guanyu" />
 
     <ImageView
         android:src="@drawable/yuanbutton"
@@ -41,11 +40,11 @@
         android:layout_marginBottom="10dp">
         <Button
             android:id="@+id/jbutton"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textColor="#FAFAFA"
             android:background="@drawable/long_button"
-            android:text="转简体"
-            android:paddingBottom="4dp"
+            android:text="@string/zhuanjian"
+            android:paddingBottom="5dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
@@ -53,11 +52,11 @@
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/fbutton"
-            android:paddingBottom="4dp"
-            android:textSize="20sp"
+            android:paddingBottom="5dp"
+            android:textSize="22sp"
             android:textColor="#FAFAFA"
             android:background="@drawable/long_button"
-            android:text="转繁体"
+            android:text="@string/zhuanfan"
             android:layout_width="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
