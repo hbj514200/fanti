@@ -52,6 +52,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void run() {
                 try { Thread.sleep(40000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
+                try { Thread.sleep(300000); } catch (Exception e) { }
+                myhandler.sendMessage( new Message() );
+                try { Thread.sleep(600000); } catch (Exception e) { }
+                myhandler.sendMessage( new Message() );
+                try { Thread.sleep(600000); } catch (Exception e) { }
+                myhandler.sendMessage( new Message() );
             }
         }).start();
 
