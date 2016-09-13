@@ -12,22 +12,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import net.youmi.android.normal.spot.SpotManager;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private Button jButton;
     private Button fButton;
+    InterstitialAd mInterstitialAd;
     private EditText editText;
     private ImageView yuanbutton;
     private int yuanflag = 1;
-    private FirebaseAnalytics mFirebaseAnalytics;
+    private int adflag = 0;
     Handler myhandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
-            SpotManager.getInstance(MainActivity.this).setSpotOrientation(SpotManager.ORIENTATION_PORTRAIT);
-            SpotManager.getInstance(MainActivity.this).showSpotAds(MainActivity.this);
+            adflag = 1;
             super.handleMessage(msg);
         }
     };
@@ -45,18 +46,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         jButton.setOnClickListener(this);
         fButton.setOnClickListener(this);
         yuanbutton.setOnClickListener(this);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        admob();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try { Thread.sleep(40000); } catch (Exception e) { }
+                try { Thread.sleep(10000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
-                try { Thread.sleep(300000); } catch (Exception e) { }
+                try { Thread.sleep(200000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
-                try { Thread.sleep(600000); } catch (Exception e) { }
+                try { Thread.sleep(200000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
-                try { Thread.sleep(600000); } catch (Exception e) { }
+                try { Thread.sleep(200000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
             }
         }).start();
@@ -68,11 +69,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.jbutton:
                 editText.setText(tools.tofanti(editText.getText().toString()));
+                zhanshi();
                 break;
             case R.id.fbutton:
                 editText.setText(tools.tojianti(editText.getText().toString()));
+                zhanshi();
                 break;
             case R.id.yuanbutton:
+                zhanshi();
                 if (yuanflag % 2 == 1) {
                     yuanbutton.setImageResource(R.drawable.yuanbutton2);
                     ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -90,6 +94,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void zhanshi(){
+        if (adflag==1 && mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+            adflag = 0;
+        }
+    }
+    private void admob(){
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-6630898560544189/3871700555");
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+            }
+        });
+        requestNewInterstitial();
+    }
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
+                .build();
+        mInterstitialAd.loadAd(adRequest);
     }
 
 }

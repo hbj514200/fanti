@@ -10,14 +10,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
-import net.youmi.android.AdManager;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class welcomeActivity extends Activity {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     Handler myhandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
-            AdManager.getInstance(welcomeActivity.this).init("f7d0a530280e2100", "194a307243eb6ae2", true, true);
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(welcomeActivity.this);
             sendNotification();
         }
     };
@@ -53,7 +54,7 @@ public class welcomeActivity extends Activity {
         PendingIntent pendingIntent = PendingIntent.getActivity(welcomeActivity.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(welcomeActivity.this)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getResources().getString(R.string.push_title))
                 .setContentText(getResources().getString(R.string.push_content))
                 .setContentIntent(pendingIntent);
