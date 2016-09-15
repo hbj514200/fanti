@@ -46,12 +46,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         jButton.setOnClickListener(this);
         fButton.setOnClickListener(this);
         yuanbutton.setOnClickListener(this);
-        admob();
 
+        admob();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try { Thread.sleep(10000); } catch (Exception e) { }
+                try { Thread.sleep(20000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
                 try { Thread.sleep(200000); } catch (Exception e) { }
                 myhandler.sendMessage( new Message() );
@@ -61,18 +61,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 myhandler.sendMessage( new Message() );
             }
         }).start();
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.jbutton:
-                editText.setText(tools.tofanti(editText.getText().toString()));
+                editText.setText(tools.tojianti(editText.getText().toString()));
                 zhanshi();
                 break;
             case R.id.fbutton:
-                editText.setText(tools.tojianti(editText.getText().toString()));
+                editText.setText(tools.tofanti(editText.getText().toString()));
                 zhanshi();
                 break;
             case R.id.yuanbutton:
@@ -100,11 +99,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (adflag==1 && mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
             adflag = 0;
+            requestNewInterstitial();
         }
     }
     private void admob(){
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-6630898560544189/3871700555");
+        mInterstitialAd.setAdUnitId("ca-app-pub-6630898560544189/6091966955");
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -116,7 +116,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
                 .build();
         mInterstitialAd.loadAd(adRequest);
     }

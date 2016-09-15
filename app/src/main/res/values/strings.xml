@@ -4,7 +4,7 @@
     <string name="gaisi">该死，程序内部出现了错误，我们会在将来修复这个BUG。</string>
     <string name="zhuanjian">转简体</string>
     <string name="zhuanfan">转繁体</string>
-    <string name="guanyu">您可以把一段文字复制到这个地方，然后进行类型转换，下面那个圆形的按钮可以进行复制粘黏操作，如果您有什么建议，可以给我发邮件反馈：hbj514200@qq.com 感谢您的使用。</string>
+    <string name="guanyu">您可以把一段文字复制到这个地方，进行类型转换，下面那个圆形的按钮可以进行复制粘黏操作，如果您有任何建议，可以给我发邮件反馈：hbj514200@qq.com 感谢您的使用。</string>
     <string name="push_title">快速简繁转换</string>
     <string name="push_content">点击即可跳转到app，您可以清除该消息。</string>
 </resources>
